@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     skills TEXT,
     linkedin VARCHAR(255),
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- Create root user with privileges (if needed)
