@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   flask-app:
-    build: .
+    image: harnempire/cat:v2
     ports:
       - "4000:5000"
     depends_on:
