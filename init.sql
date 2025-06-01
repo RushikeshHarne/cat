@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS users (
 -- Create user_profiles table (for the dashboard/save_profile functionality)
 CREATE TABLE IF NOT EXISTS user_profiles (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT AUTO_INCREMENT,
     full_name VARCHAR(100),
     preferred_role VARCHAR(100),
     skills TEXT,
