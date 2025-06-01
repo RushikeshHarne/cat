@@ -25,6 +25,7 @@ If you want to change the app port, update this part in docker-compose.yml
 
 🧼 Stop & Clean Containers
 docker-compose down
+docker system prune -af
 
 🤝 Contributing
 Feel free to fork this repo, open issues, or make pull requests to improve it!
