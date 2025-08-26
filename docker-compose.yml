@@ -6,7 +6,7 @@ services:
     ports:
       - "4000:5000"
     depends_on:
-      - mysql-db
+      - mysql-db  #mysql
     environment:
       # Use this environment variable in app.py to connect to MySQL
       MYSQL_HOST: mysql-db
