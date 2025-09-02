@@ -20,27 +20,29 @@ pipeline {
     }
 
     stage('Tag & Push to Docker Hub') {
-      steps {
+    steps {
         script {
-          // get short commit sha for tagging
-          def SHORT_SHA = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+            // get short commit sha for tagging
+            def SHORT_SHA = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+            echo "Commit SHA: ${SHORT_SHA}"
+
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                sh """
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+
+                    # tag dynamically with SHA
+                    docker tag harnempire/cat:v2 ${IMAGE_NAME}:${SHORT_SHA}
+                    docker push ${IMAGE_NAME}:${SHORT_SHA}
+
+                    # optional: also push as latest
+                    docker tag harnempire/cat:v2 ${IMAGE_NAME}:latest
+                    docker push ${IMAGE_NAME}:latest
+                """
+            }
         }
-
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh '''
-            # login using token (password)
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-
-
-            # optionally add a tag by commit sha (compose already built :latest)
-            docker tag harnempire/cat:v2 ${IMAGE_NAME}:v1 || true
-
-            # push both latest and sha tag (docker-compose push will push 'image' names too)
-            docker push ${IMAGE_NAME}:v1
-          '''
-        }
-      }
     }
+}
+
 
     stage('Cleanup') {
       steps {
