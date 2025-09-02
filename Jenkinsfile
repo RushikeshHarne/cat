@@ -12,18 +12,12 @@ pipeline {
       }
     }
 
-    #stage('Build (docker-compose)') {
-     # steps {
-      #  // Build images declared in docker-compose.yml
-       # sh 'docker-compose up --build'
-      #}
-    #}
-    stage('Run Containers') {
+    stage('Build (docker-compose)') {
       steps {
-        sh 'docker-compose up -d'
-        }
-     }
-
+        // Build images declared in docker-compose.yml
+        sh 'docker-compose up --build -d
+      }
+    }
 
     stage('Tag & Push to Docker Hub') {
     steps {
