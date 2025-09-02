@@ -5,27 +5,27 @@ services:
     image: harnempire/cat:v2
     ports:
       - "4000:5000"
-    depends_on:
-      - mysql-db  #mysql
     environment:
-      # Use this environment variable in app.py to connect to MySQL
       MYSQL_HOST: mysql-db
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: user_db
+    depends_on:
+      mysql-db:
+        condition: service_healthy   # wait until mysql healthcheck passes
 
   mysql-db:
     image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: user_db   # create db on init
+      MYSQL_DATABASE: user_db
     ports:
       - "3306:3306"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
+   # healthcheck:
+    #  test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+     # interval: 5s
+      #timeout: 3s
+      #retries: 5
