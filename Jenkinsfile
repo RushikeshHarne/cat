@@ -51,7 +51,7 @@ pipeline {
 
   post {
     success {
-      echo "Build & push completed."
+      echo "Build & push completed. doned"
     }
     failure {
       echo "Build failed - check console output."
