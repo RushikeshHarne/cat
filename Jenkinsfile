@@ -15,7 +15,7 @@ pipeline {
     stage('Build (docker-compose)') {
       steps {
         // Build images declared in docker-compose.yml
-        sh 'docker-compose -f docker-compose.yml build --parallel'
+        sh 'docker-compose up'
       }
     }
 
