@@ -24,7 +24,12 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
--- Create root user with privileges (if needed)
--- Note: In production, you should use a more secure password
-GRANT ALL PRIVILEGES ON user_db.* TO 'root'@'localhost' IDENTIFIED BY 'root';
+-- ✅ Correct privilege assignment
+-- Create the root user (only if it doesn't exist)
+CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY 'root';
+
+-- Grant privileges
+GRANT ALL PRIVILEGES ON user_db.* TO 'root'@'localhost';
+
+-- Apply changes
 FLUSH PRIVILEGES;
