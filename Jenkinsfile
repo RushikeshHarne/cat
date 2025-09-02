@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           // get short commit sha for tagging
-          SHORT_SHA = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+          def SHORT_SHA = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
         }
 
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
