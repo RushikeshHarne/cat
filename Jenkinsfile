@@ -33,10 +33,10 @@ pipeline {
 
 
             # optionally add a tag by commit sha (compose already built :latest)
-            docker tag harnempire/cat:v2 ${IMAGE_NAME}:${SHORT_SHA} || true
+            docker tag harnempire/cat:v2 ${IMAGE_NAME}:v1 || true
 
             # push both latest and sha tag (docker-compose push will push 'image' names too)
-            docker push ${IMAGE_NAME}:${SHORT_SHA}
+            docker push ${IMAGE_NAME}:v1
           '''
         }
       }
