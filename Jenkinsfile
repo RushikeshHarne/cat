@@ -35,8 +35,8 @@ pipeline {
                     docker push ${IMAGE_NAME}:${SHORT_SHA}
 
                     # optional: also push as latest
-                    docker tag harnempire/cat:v2 ${IMAGE_NAME}:latest
-                    docker push ${IMAGE_NAME}:latest
+                    # docker tag harnempire/cat:v2 ${IMAGE_NAME}:latest
+                    # docker push ${IMAGE_NAME}:latest
                 """
             }
         }
