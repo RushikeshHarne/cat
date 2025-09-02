@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "harnempire/testing:v2"
+    IMAGE_NAME = "harnempire/testing"
   }
 
   stages {
@@ -31,14 +31,12 @@ pipeline {
             # login using token (password)
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-            # docker compose up
-            docker-compose up
 
             # optionally add a tag by commit sha (compose already built :latest)
-           # docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:${SHORT_SHA} || true
+            docker tag harnempire/cat:v2 ${IMAGE_NAME}:${SHORT_SHA} || true
 
             # push both latest and sha tag (docker-compose push will push 'image' names too)
-            #docker push ${IMAGE_NAME}
+            docker push ${IMAGE_NAME}
           '''
         }
       }
