@@ -1,11 +1,11 @@
-# Use your existing image as base
-FROM harnempire/cat:v2
+# Use official Apache (HTTPD) base image
+FROM httpd:latest
 
-# Set working directory (optional)
-WORKDIR /app
+# Copy your HTML file into the default Apache directory
+COPY index.html /usr/local/apache2/htdocs/
 
-# Expose the port that the Flask app runs on (based on your previous compose file, it's 5000)
-EXPOSE 5000
+# Expose port 80 for web traffic
+EXPOSE 80
 
-# Default command to start the container
-CMD ["python3", "app.py"]
+# Default command to start Apache
+CMD ["httpd-foreground"]
