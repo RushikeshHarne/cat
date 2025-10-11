@@ -11,7 +11,7 @@ WORKDIR /app
 COPY . /app
 
 # Install Python dependencies
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt
 
 # Copy init SQL script
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
