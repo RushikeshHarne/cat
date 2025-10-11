@@ -2,8 +2,8 @@
 FROM python:3.10-slim
 
 # Install MySQL server
-RUN apt-get update && apt-get install -y mysql-server && apt-get clean
-
+# New, working line:
+RUN apt-get update && apt-get install -y mariadb-server && apt-get clean
 # Set working directory
 WORKDIR /app
 
