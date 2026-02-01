@@ -18,6 +18,7 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            git clone https://github.com/RushikeshHarne/cat.git
             cd /home/rushikeshharne3097/cat
             git pull origin main
            # npm install --production  # Example for Node.js
