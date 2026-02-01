@@ -19,8 +19,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/rushikeshharne3097/project
-            sudo apt install git
-            apt install docker
-           #  git pull origin main
-           # npm install --production  # Example for Node.js
-           # pm2 restart all           # Example restart command
+            mkdir don
+          
