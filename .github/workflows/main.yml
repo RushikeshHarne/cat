@@ -22,7 +22,7 @@ jobs:
             cd /home/rushikeshharne3097/cat
             git pull origin main
             sudo apt install apache2
-            sudo mv /home/rushikeshharne3097/cat/index.html /var/www/html/index.html
+           # sudo mv /home/rushikeshharne3097/cat/index.html /var/www/html/index.html
            # npm install --production  # Example for Node.js
            # pm2 restart all           # Example restart command
           
