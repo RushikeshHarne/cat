@@ -19,5 +19,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/rushikeshharne3097/project
-            mkdir don
+            rm -rvf don
           
