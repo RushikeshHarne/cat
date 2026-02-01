@@ -19,5 +19,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/rushikeshharne3097/project
-            rm -rvf don
+            git pull origin main
+           # npm install --production  # Example for Node.js
+           # pm2 restart all           # Example restart command
           
