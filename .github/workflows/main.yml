@@ -25,4 +25,4 @@ jobs:
             fi
             cd cat
             git pull origin main
-            sudo cp index.html /var/www/html/index.html
+            sudo mv index.html /var/www/html/index.html
