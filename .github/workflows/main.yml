@@ -7,6 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -18,11 +19,10 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            git clone https://github.com/RushikeshHarne/cat.git
-            cd /home/rushikeshharne3097/cat
+            cd /home/rushikeshharne3097 || exit 1
+            if [ ! -d "cat" ]; then
+              git clone https://github.com/RushikeshHarne/cat.git
+            fi
+            cd cat
             git pull origin main
-           # sudo apt install apache2
-            sudo cp /home/rushikeshharne3097/cat/index.html /var/www/html/index.html
-           # npm install --production  # Example for Node.js
-           # pm2 restart all           # Example restart command
-          
+            sudo cp index.html /var/www/html/index.html
